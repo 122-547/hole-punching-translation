@@ -89,11 +89,13 @@ frame_time = 1.0 / DESIRED_FPS
 try:
     accept_client.bind(("0.0.0.0", 5400))
     accept_client.sendto(b"<GET>", server_addr)
+    print("Запрос <GET> отправлен, ожидаю ответ.")
     while device is None:
         data, addr = accept_client.recvfrom(1024)
         if not data:
             continue
         device = (json.loads(data.decode())[0], video_port)
+        print(f"Получен ответ: {device}")
 
     while True:
         start_time = time.time()
