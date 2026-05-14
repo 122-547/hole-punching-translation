@@ -15,9 +15,13 @@ try:
             print(f"Адрес {addr} добавлен в массив. Устройств: {len(devices)}")
 
         if len(devices) == 2:
-            for i in range(1, 0, -1):
-                server.sendto(json.dumps(devices[i-1]).encode(), devices[i])
-                print(f"Адрес {devices[i-1]} отправлен на {devices[i]}")
+            # for i in range(1, 0, -1):
+            #     server.sendto(json.dumps(devices[i-1]).encode(), devices[i])
+            #     print(f"Адрес {devices[i-1]} отправлен на {devices[i]}")
+            server.sendto(json.dumps(devices[0]).encode(), devices[1])
+            print(f"Адрес {devices[0]} отправлен на {devices[1]}")
+            server.sendto(json.dumps(devices[1]).encode(), devices[0])
+            print(f"Адрес {devices[1]} отправлен на {devices[0]}")
             devices.clear()
 
             
